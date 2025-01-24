@@ -12,7 +12,7 @@ def setup():
     driver.get(BASE_URL)
     yield driver
     driver.quit()
-
+@pytest.mark.run(order=4)
 def test_add_items_to_cart(setup):
     login_page = LoginPage(setup)
     login_page.login(VALID_USERNAME, VALID_PASSWORD)

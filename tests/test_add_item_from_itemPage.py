@@ -13,6 +13,7 @@ def setup():
     yield driver
     driver.quit()
 
+@pytest.mark.run(order=5)
 def test_add_item_from_inventory_item_page(setup):
     # Login to the application
     login_page = LoginPage(setup)
@@ -23,12 +24,10 @@ def test_add_item_from_inventory_item_page(setup):
     inventory_page = InventoryPage(setup)
     items_to_add = ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
     inventory_page.add_items_to_cart(items_to_add)
-    time.sleep(2)
 
     # Navigate to product details page
     # inventory_page = InventoryPage(setup)
     inventory_page.navigate_to_product_details("Sauce Labs Onesie")
-    time.sleep(2)
 
     # Add the item to the cart from the product details page
     inventory_page.add_item_from_details_page()

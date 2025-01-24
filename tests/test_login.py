@@ -11,18 +11,19 @@ def setup():
     yield driver
     driver.quit()
 
+@pytest.mark.run(order=1)
 def test_valid_login(setup):
     login_page = LoginPage(setup)
     login_page.login(VALID_USERNAME, VALID_PASSWORD)
     print(f"Current URL after login: {setup.current_url}") 
     assert "inventory.html" in setup.current_url
-
+@pytest.mark.run(order=2)
 def test_invalid_login(setup):
     login_page = LoginPage(setup)
     login_page.login(INVALID_USERNAME, INVALID_PASSWORD)
     error_message = login_page.get_error_message()
     assert error_message == "Epic sadface: Username and password do not match any user in this service"
-    
+@pytest.mark.run(order=3)    
 def test_empty_credentials(setup):
     login_page = LoginPage(setup)
     login_page.login("", "")

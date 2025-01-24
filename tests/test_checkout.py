@@ -15,6 +15,7 @@ def setup():
     yield driver
     driver.quit()
 
+@pytest.mark.run(order=7)
 def test_checkout(setup):
     login_page = LoginPage(setup)
     login_page.login(VALID_USERNAME, VALID_PASSWORD) 

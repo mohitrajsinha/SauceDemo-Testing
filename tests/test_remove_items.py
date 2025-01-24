@@ -13,6 +13,7 @@ def setup():
     yield driver
     driver.quit()
 
+@pytest.mark.run(order=6)
 def test_remove_item_from_cart(setup):
     # Login to the application
     login_page = LoginPage(setup)
@@ -30,7 +31,6 @@ def test_remove_item_from_cart(setup):
     cart_page.go_to_cart()
 
     removed_item_name = cart_page.remove_item_by_price_range(8, 10)
-    time.sleep(2) 
 
     cart_count = inventory_page.get_cart_item_count()
     print(f"Cart count after removal: {cart_count}")
