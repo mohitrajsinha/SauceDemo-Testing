@@ -1,2 +1,2 @@
 # Changelog
-- Refactored payment checkout flow
+- Refactored payment checkout flow fix
